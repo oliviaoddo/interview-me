@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store.jsx';
 import '../public/index.scss';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* rest of the app goes here! */}
+    <h1>hello olivia</h1>
   </Provider>,
   document.getElementById('app')
 );

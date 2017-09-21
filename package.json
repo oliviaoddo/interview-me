@@ -1,12 +1,13 @@
 {
-  "name": "boiler-plate",
+  "name": "interview-me",
   "version": "1.0.0",
-  "description": "Boiler plate code for javascript apps.",
+  "description": "Technical interview app.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "start-dev": "webpack -w &amp; nodemon server.js"
+    "start": "node server/start.js",
+    "start-dev": "webpack -w &amp; nodemon server/start.js",
+    "seed": "node db/seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,7 @@
   "dependencies": {
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "mongoose": "^4.11.12",
     "morgan": "^1.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
