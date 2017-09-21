@@ -3,14 +3,36 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const session = require('express-session');
+const passport = require('passport');
+const MongoStore = require('connect-mongo')(session);
+
 require('../db/database');
+
+if (process.env.NODE_ENV === 'development') {
+  require('../secrets.js');
+}
 
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, './public')));
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'a wildly insecure secret',
+  store: new MongoStore({
+    url: 'mongodb://localhost/interview-me'
+  }),
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.use('/api', require('./api/index')); // matches all requests to /api
 

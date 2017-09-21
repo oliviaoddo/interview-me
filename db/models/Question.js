@@ -9,6 +9,6 @@ const questionSchema = new mongoose.Schema({
   type: String
 });
 
-const model = mongoose.model('Question', questionSchema);
+const Question = mongoose.model('Question', questionSchema);
 
-module.exports = model;
+module.exports = Question;
